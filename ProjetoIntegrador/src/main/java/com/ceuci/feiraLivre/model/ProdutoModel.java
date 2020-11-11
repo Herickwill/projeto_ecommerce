@@ -1,4 +1,4 @@
-package org.ceuci.feiraLivre.model;
+package com.ceuci.feiraLivre.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,40 +6,47 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "produto")
 public class ProdutoModel {
-	
-	//ATRIBUTOS
+
+	@Column
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column
 	@NotNull
-	private String nome;
-	
+	public String nome;
+
 	@Column
-	@NotNull
-	private String descricao;
-	
+	public String descricao;
+
 	@Column
-	@NotNull
-	private String produtor;
-	
+	public String produtor;
+
 	@Column
-	@NotNull
-	private double preco;
-	
+	public double preco;
+
 	@Column
-	@NotNull
-	private String foto;
-	
-	
-	//GET E SET
+	public String foto;
+
+//	@ManyToOne
+//	@JsonIgnoreProperties("produto")
+//	private CategoriaModel categoria;
+
+	// get & set
+//
+//	public CategoriaModel getCategoria() {
+//		return categoria;
+//	}
+//
+//	public void setCategoria(CategoriaModel categoria) {
+//		this.categoria = categoria;
+//	}
+
 	public Long getId() {
 		return id;
 	}
@@ -87,7 +94,5 @@ public class ProdutoModel {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	
-	
+
 }

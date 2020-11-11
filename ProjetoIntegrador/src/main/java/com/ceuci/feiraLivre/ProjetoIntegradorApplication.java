@@ -1,4 +1,4 @@
-package org.ceuci.feiraLivre;
+package com.ceuci.feiraLivre;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
