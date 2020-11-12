@@ -26,35 +26,37 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository repository;
 	
+	//Ver todos os usuarios
 	@GetMapping
 	public ResponseEntity<List<UsuarioModel>> GetAll(){
 		return ResponseEntity.ok(repository.findAll());
 		
 	}
+	//Ver usuario por Id
 	@GetMapping("/{id}")
 	public ResponseEntity<UsuarioModel> GetById(@PathVariable long id){
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.notFound().build());
-				
+				.orElse(ResponseEntity.notFound().build());	
 	}
-	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<UsuarioModel>> getByTitulo(@PathVariable String nome){
+	//Pegar por nome 
+	@GetMapping("/nomes/{nome}")
+	public ResponseEntity<List<UsuarioModel>> getByNome(@PathVariable String nome){
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
-	
+	//Inserir
 	@PostMapping
 	public ResponseEntity<UsuarioModel> post (@RequestBody UsuarioModel postagem){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
 	}
-	
+	//Modificar
 	@PutMapping
 	public ResponseEntity<UsuarioModel> put (@RequestBody UsuarioModel postagem){
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
 	}
-	
+	//Deletar
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long id) {
+	public void deleteById(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
 }

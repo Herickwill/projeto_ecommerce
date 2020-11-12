@@ -28,7 +28,7 @@ public class CategoriaModel {
 	
 	@Column
 	public String unidade_medida;
-	
+
 //	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 //	@JsonIgnoreProperties("categoria")
 //	private List<ProdutoModel> produto;
@@ -44,12 +44,12 @@ public class CategoriaModel {
 		this.id = id;
 	}
 
-	public String getTipo() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setTipo(String tipo) {
-		this.categoria = tipo;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public boolean isOrganico() {
@@ -67,7 +67,6 @@ public class CategoriaModel {
 	public void setUnidade_medida(String unidade_medida) {
 		this.unidade_medida = unidade_medida;
 	}
-	
 	
 	
 	

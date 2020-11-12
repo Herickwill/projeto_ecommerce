@@ -24,8 +24,8 @@ public class ProdutoModel {
 	@Column
 	public String descricao;
 
-	@Column
-	public String produtor;
+//	@Column
+//	public String produtor;
 
 	@Column
 	public double preco;
@@ -71,13 +71,13 @@ public class ProdutoModel {
 		this.descricao = descricao;
 	}
 
-	public String getProdutor() {
-		return produtor;
-	}
-
-	public void setProdutor(String produtor) {
-		this.produtor = produtor;
-	}
+//	public String getProdutor() {
+//		return produtor;
+//	}
+//
+//	public void setProdutor(String produtor) {
+//		this.produtor = produtor;
+//	}
 
 	public double getPreco() {
 		return preco;
