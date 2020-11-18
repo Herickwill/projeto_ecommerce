@@ -7,13 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "pedido")
 public class PedidoModel {
 
-	@Column
+	//ATRIBUTOS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -22,15 +28,18 @@ public class PedidoModel {
 	private double valor;
 	
 	@Column
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date data;
-	
-//	@Column
-//	@JsonIgnoreProperties("pedido")
-//	private List<ProdutoModel> produto;
 	
 	@Column
 	private int quantidadeItens;
 	
+	@ManyToOne
+	@JsonIgnoreProperties
+	private UsuarioModel usuario;
+	
+	
+	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;
 	}
@@ -55,14 +64,6 @@ public class PedidoModel {
 		this.data = data;
 	}
 
-//	public List<ProdutoModel> getProduto() {
-//		return produto;
-//	}
-//
-//	public void setProduto(List<ProdutoModel> produto) {
-//		this.produto = produto;
-//	}
-
 	public int getQuantidadeItens() {
 		return quantidadeItens;
 	}
@@ -70,5 +71,15 @@ public class PedidoModel {
 	public void setQuantidadeItens(int quantidadeItens) {
 		this.quantidadeItens = quantidadeItens;
 	}
+
+	public UsuarioModel getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioModel usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 	
 }

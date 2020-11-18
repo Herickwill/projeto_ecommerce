@@ -5,14 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "produto")
 public class ProdutoModel {
 
-	@Column
+	//ATRIBUTOS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -24,28 +27,22 @@ public class ProdutoModel {
 	@Column
 	public String descricao;
 
-//	@Column
-//	public String produtor;
-
 	@Column
 	public double preco;
 
 	@Column
 	public String foto;
 
-//	@ManyToOne
-//	@JsonIgnoreProperties("produto")
-//	private CategoriaModel categoria;
-
-	// get & set
-//
-//	public CategoriaModel getCategoria() {
-//		return categoria;
-//	}
-//
-//	public void setCategoria(CategoriaModel categoria) {
-//		this.categoria = categoria;
-//	}
+	@ManyToOne
+	@JsonIgnoreProperties("produtos")
+	private CategoriaModel categoria;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private ProdutorModel produtor;
+	
+	
+	//GETTERS AND SETTERS
 
 	public Long getId() {
 		return id;
@@ -71,14 +68,6 @@ public class ProdutoModel {
 		this.descricao = descricao;
 	}
 
-//	public String getProdutor() {
-//		return produtor;
-//	}
-//
-//	public void setProdutor(String produtor) {
-//		this.produtor = produtor;
-//	}
-
 	public double getPreco() {
 		return preco;
 	}
@@ -93,6 +82,14 @@ public class ProdutoModel {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public CategoriaModel getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaModel categoria) {
+		this.categoria = categoria;
 	}
 
 }

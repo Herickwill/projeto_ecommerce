@@ -1,18 +1,24 @@
 package com.ceuci.feiraLivre.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="produtor")
 public class ProdutorModel {
 
-	@Column
+	//ATRIBUTOS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -33,14 +39,19 @@ public class ProdutorModel {
 	@NotNull
 	public String cnpj;
 	
-	public String getCnpj() {
-		return cnpj;
-	}
+	@Column
+	@NotNull
+	public String telefone;
+	
+	@OneToMany(mappedBy="produtor", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("produtor")
+	private List<EnderecoModel> endereco;
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
+	@OneToMany(mappedBy="produtor", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("produtor")
+	private List<ProdutoModel> produtos;
+	
+	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;
 	}
@@ -72,5 +83,29 @@ public class ProdutorModel {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public List<EnderecoModel> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<EnderecoModel> endereco) {
+		this.endereco = endereco;
+	}
+
 }

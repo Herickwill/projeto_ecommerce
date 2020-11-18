@@ -27,34 +27,33 @@ public class ProdutorController {
 	@Autowired
 	private ProdutorRepository repository;
 	
-	//Pegar todos os produtos
 	@GetMapping
 	public ResponseEntity<List<ProdutorModel>> GetAll(){
 		return ResponseEntity.ok(repository.findAll());
+		
 	}
-	//Pegar por ID
 	@GetMapping("/{id}")
 	public ResponseEntity<ProdutorModel> GetById(@PathVariable Long id){
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.notFound().build());	
+				.orElse(ResponseEntity.notFound().build());
+				
 	}
-	//Pegar por nome
-	@GetMapping("/titulo/{nome}")
-	public ResponseEntity<List<ProdutorModel>> getByNome(@PathVariable String nome){
+	@GetMapping("/titulo/{titulo}")
+	public ResponseEntity<List<ProdutorModel>> getByTitulo(@PathVariable String nome){
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
-	//Inserir
+	
 	@PostMapping
 	public ResponseEntity<ProdutorModel> post (@RequestBody ProdutorModel postagem){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
 	}
-	//Atualizar
+	
 	@PutMapping
 	public ResponseEntity<ProdutorModel> put (@RequestBody ProdutorModel postagem){
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
 	}
-	//Deletar
+	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		repository.deleteById(id);
